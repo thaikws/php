@@ -1,6 +1,10 @@
 <?php
 
+use Dba\Connection;
+
 include_once 'Conn.php';
+
+//Extensão PHP Getters & Setters
 
 class Categoria{
     private $id;
@@ -31,5 +35,20 @@ class Categoria{
     public function setInformacoes($info){
         $this->informacoes = $info;
         return $this;
+    }
+
+    public function salvar(){
+        try{
+            $this->conn = new Conn();
+            $sql = "CALL salvar_categoria(?, ?, ?)";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $this->id);
+            $executar->bindValue(2, mb_strtoupper($this->nome));
+            $executar->bindValue(3, mb_strtoupper($this->informacoes));
+            return $executar->execute() == 1 ? true : false;
+
+        }catch(PDOException $erro){
+            echo $erro->getMessage();
+        }
     }
 }

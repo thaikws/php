@@ -22,6 +22,15 @@
                 <input type="text" class="form-control" id="txtsigla" name="txtsigla" placeholder="UF"
                     value="">
             </div>
+        </div>    
+        <div class="form-group row">
+            <label for="inputText" class="col-sm-2 col-form-label">
+                Ações
+            </label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="txtacao" name="txtacao" placeholder="Ações"
+                    value="">
+            </div>
         </div>
 
         <div class="form-group row">

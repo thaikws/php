@@ -6,7 +6,7 @@ include_once 'Conn.php';
 
 //Extensão PHP Getters & Setters
 
-class Categoria{
+class Fornecedor{
     private $id;
     private $nome;
     private $empresa;
@@ -50,12 +50,12 @@ class Categoria{
     public function salvar(){
         try{
             $this->conn = new Conn();
-            $sql = "CALL salvar_categoria(?, ?, ?)";
+            $sql = "CALL salvar_fornecedor(?, ?, ?, ?)";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id);
             $executar->bindValue(2, mb_strtoupper($this->nome));
             $executar->bindValue(3, mb_strtoupper($this->empresa));
-            $executar->bindValue(3, mb_strtoupper(string: $this->funcao));
+            $executar->bindValue(4, mb_strtoupper(string: $this->funcao));
             return $executar->execute() == 1 ? true : false;
 
         }catch(PDOException $erro){

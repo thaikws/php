@@ -6,7 +6,7 @@ include_once 'Conn.php';
 
 //Extensão PHP Getters & Setters
 
-class Categoria{
+class Cliente{
     private $id;
     private $nome;
     private $email;
@@ -32,15 +32,15 @@ class Categoria{
         return $this->email;
     }
 
-    public function setEmpresa($email){
-        $this->email = $$email;
+    public function setEmail($email){
+        $this->email = $email;
         return $this;
     }
     
     public function salvar(){
         try{
             $this->conn = new Conn();
-            $sql = "CALL salvar_categoria(?, ?, ?)";
+            $sql = "CALL salvar_cliente(?, ?, ?)";
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id);
             $executar->bindValue(2, mb_strtoupper($this->nome));

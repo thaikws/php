@@ -24,7 +24,11 @@
                     $dados = $cat->listar(null);
                     foreach($dados as $mostrar){
                     ?>
-
+                    <tr>
+                        <td>><?= $mostrar['id'] ?></td>
+                        <td>Nome</td>
+                        <td>Informações</td>
+                    </tr>
                     <?php
                     } 
                     ?>

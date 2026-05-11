@@ -36,3 +36,35 @@
         </div>
     </form>
 </div>
+
+<?php
+     //verificar se o botão btnsalvar foi acionado
+     if(filter_input(INPUT_POST, 'btnsalvar')){
+        $nome = filter_input(INPUT_POST, 'txtnome');
+        $email = filter_input(INPUT_POST, 'txtemail');
+
+        //acesso a classe (em models)   
+        include_once __DIR__ .  '/../../models/Cliente.php';
+        $cliente = new Cliente();
+        $cliente->setId(null);
+        $cliente->setNome($nome);
+        $cliente->setEmail($email);
+
+     //efetivar o insert into
+     if($cliente->salvar()){
+?>
+        <div class="alert alert-primary mt-3" role="alert">
+            Cliente cadastrado com sucesso!
+        </div>
+        <meta hidden http-equiv="refresh" content="0.2;URL=?p=clientes">
+<?php
+     }
+     else{
+?>
+        <div class="alert alert-danger mt-3" role="alert">
+            Erro ao cadastrar cliente!
+        </div>
+        <meta hidden http-equiv="refresh" content="0.2;URL=?p=clientes">
+<?php
+     }
+}

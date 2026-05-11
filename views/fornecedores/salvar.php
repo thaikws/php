@@ -28,7 +28,7 @@
                 Função
             </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="txtempresa" name="txtFuncao" placeholder="Função"
+                <input type="text" class="form-control" id="txtfuncao" name="txtfuncao" placeholder="Função"
                     value="">
             </div>
         </div>
@@ -45,3 +45,37 @@
         </div>
     </form>
 </div>
+
+<?php
+     //verificar se o botão btnsalvar foi acionado
+     if(filter_input(INPUT_POST, 'btnsalvar')){
+        $nome = filter_input(INPUT_POST, 'txtnome');
+        $empresa = filter_input(INPUT_POST, 'txtempresa');
+        $funcao = filter_input(INPUT_POST, 'txtfuncao');
+
+        //acesso a classe (em models)   
+        include_once __DIR__ . '/../../models/Fornecedor.php';
+        $fornecedor = new Fornecedor();
+        $fornecedor->setId(null);
+        $fornecedor->setNome($nome);
+        $fornecedor->setEmpresa($empresa);
+        $fornecedor->setFuncao($funcao);
+
+     //efetivar o insert into
+     if($fornecedor->salvar()){
+?>
+        <div class="alert alert-primary mt-3" role="alert">
+            Fornecedor cadastrado com sucesso!
+        </div>
+        <meta hidden http-equiv="refresh" content="0.2;URL=?p=fornecedores">
+<?php
+     }
+     else{
+?>
+        <div class="alert alert-danger mt-3" role="alert">
+            Erro ao cadastrar fornecedor!
+        </div>
+        <meta hidden http-equiv="refresh" content="0.2;URL=?p=fornecedores">
+<?php
+     }
+}

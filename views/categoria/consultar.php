@@ -17,6 +17,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                    include_once '../../models/Categoria.php';
+                    $cat = new Categoria();
+
+                    $dados = $cat->listar(null);
+                    foreach($dados as $mostrar){
+                    ?>
+
+                    <?php
+                    } 
+                    ?>
                 </tbody>
             </table>
         </div>

@@ -44,7 +44,7 @@
         //acesso a classe (em models)   
         include_once '../models/Categoria.php';
         $cat = new Categoria();
-        $cat->setId(null);
+        $cat->setId(null); 
         $cat->setNome($nome);
         $cat->setInformacoes($info);
 
@@ -66,3 +66,25 @@
 <?php
      }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

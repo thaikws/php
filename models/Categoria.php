@@ -37,8 +37,9 @@ class Categoria{
         return $this;
     }
 
-    public function salvar(){
-        try{
+ public function salvar()
+    {
+        try {
             $this->conn = new Conn();
             $sql = "CALL salvar_categoria(?, ?, ?)";
             $executar = $this->conn->prepare($sql);
@@ -46,8 +47,7 @@ class Categoria{
             $executar->bindValue(2, mb_strtoupper($this->nome));
             $executar->bindValue(3, mb_strtoupper($this->informacoes));
             return $executar->execute() == 1 ? true : false;
-
-        }catch(PDOException $erro){
+        } catch (PDOException $erro) {
             echo $erro->getMessage();
         }
     }

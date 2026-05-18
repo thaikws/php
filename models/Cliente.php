@@ -51,4 +51,28 @@ class Cliente{
             echo $erro->getMessage();
         }
     }
+
+    public function listar($id){
+
+    try{
+
+        $this->conn = new Conn();
+
+        $sql = "CALL listar_cliente(?)";
+
+        $executar = $this->conn->prepare($sql);
+
+        $executar->bindValue(1, $id);
+
+        $executar->execute();
+
+        return $executar->fetchAll(PDO::FETCH_ASSOC);
+
+    }catch(PDOException $erro){
+
+        echo $erro->getMessage();
+
+    }
+
+}
 }

@@ -17,6 +17,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                    include_once __DIR__ . '/../../models/Cliente.php';
+                    $cli = new Cliente();
+
+                    $dados = $cli->listar(null);
+                    foreach($dados as $mostrar){
+                    ?>
+                    <tr>
+                        <td><?= $mostrar['id'] ?></td>
+                        <td><?= $mostrar['nome'] ?></td>
+                        <td><?= $mostrar['email'] ?></td>
+                        <td>
+                            <a class="btn btn-danger btn-sm"
+                                href="?p=excluir/cliente&id=<?= $mostrar['id'] ?>"
+                                onclick="return confirm('Deseja realmente excluir este cliente?')">
+                                <i class="bi bi-trash"></i>
+                            </a>
+
+                            <a class="btn btn-warning btn-sm"
+                                href="?p=editar/cliente&id=<?= $mostrar['id'] ?>">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
+                    } 
+                    ?>
                 </tbody>
             </table>
         </div>

@@ -11,6 +11,7 @@ class Cliente{
     private $nome;
     private $email;
     private $conn;
+    private $tabela = "cliente";
 
     public function getId(){
         return $this->id;
@@ -48,6 +49,32 @@ class Cliente{
             return $executar->execute() == 1 ? true : false;
 
         }catch(PDOException $erro){
+            echo $erro->getMessage();
+        }
+    }
+
+    public function listar($var_id)
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "CALL listar_cliente(?)";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $var_id);
+            return $executar->execute() == 1 ? $executar->fetchAll() : false;
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
+    }
+
+    public function excluir()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "DELETE FROM {$this->tabela} WHERE id = ?";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $this->id);
+            return $executar->execute() == 1 ? true : false;
+        } catch (PDOException $erro) {
             echo $erro->getMessage();
         }
     }

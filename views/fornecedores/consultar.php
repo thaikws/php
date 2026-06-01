@@ -18,6 +18,34 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                    include_once __DIR__ . '/../../models/Fornecedor.php';
+                    $forn = new Fornecedor();
+
+                    $dados = $forn->listar(null);
+                    foreach($dados as $mostrar){
+                    ?>
+                    <tr>
+                        <td><?= $mostrar['id'] ?></td>
+                        <td><?= $mostrar['nome'] ?></td>
+                        <td><?= $mostrar['empresa'] ?></td>
+                        <td><?= $mostrar['funcao'] ?></td>
+                        <td>
+                            <a class="btn btn-danger btn-sm"
+                                href="?p=excluir/fornecedor&id=<?= $mostrar['id'] ?>"
+                                onclick="return confirm('Deseja realmente excluir este fornecedor?')">
+                                <i class="bi bi-trash"></i>
+                            </a>
+
+                            <a class="btn btn-warning btn-sm"
+                                href="?p=editar/fornecedor&id=<?= $mostrar['id'] ?>">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php
+                    } 
+                    ?>
                 </tbody>
             </table>
         </div>

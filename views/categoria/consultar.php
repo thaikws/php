@@ -18,17 +18,28 @@
                 </thead>
                 <tbody>
                     <?php 
-                    include_once '/../../models/Categoria.php';
+                    include_once __DIR__ . '/../../models/Categoria.php';
                     $cat = new Categoria();
 
                     $dados = $cat->listar(null);
                     foreach($dados as $mostrar){
                     ?>
                     <tr>
-                        <td>><?= $mostrar['id'] ?></td>
-                        <td>><?= $mostrar['nome'] ?></td>
-                        <td>><?= $mostrar['informacoes'] ?></td>
-                        <td>Excluir e Editar</td>
+                        <td><?= $mostrar['id'] ?></td>
+                        <td><?= $mostrar['nome'] ?></td>
+                        <td><?= $mostrar['informacoes'] ?></td>
+                        <td>
+                            <a class="btn btn-danger btn-sm"
+                                href="?p=excluir/categoria&id=<?= $mostrar['id'] ?>"
+                                onclick="return confirm('Deseja realmente excluir esta categoria?')">
+                                <i class="bi bi-trash"></i>
+                            </a>
+
+                            <a class="btn btn-warning btn-sm"
+                                href="?p=editar/categoria&id=<?= $mostrar['id'] ?>">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
                     </tr>
                     <?php
                     } 

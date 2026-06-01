@@ -243,3 +243,60 @@ class Conn extends PDO
         return self::$instancia;
     }
 }
+===============================================================================
+DELIMITER $$
+
+CREATE PROCEDURE listar_cliente(IN var_id INT)
+BEGIN
+
+    IF var_id IS NULL THEN
+
+        SELECT
+            id,
+            nome,
+            email
+        FROM cliente;
+
+    ELSE
+
+        SELECT
+            id,
+            nome,
+            email
+        FROM cliente
+        WHERE id = var_id;
+
+    END IF;
+
+END $$
+
+DELIMITER ;
+
+DELIMITER $$
+
+CREATE PROCEDURE listar_fornecedor(IN var_id INT)
+BEGIN
+
+    IF var_id IS NULL THEN
+
+        SELECT
+            id,
+            nome,
+            cidade
+        FROM fornecedor;
+
+    ELSE
+
+        SELECT
+            id,
+            nome,
+            cidade
+        FROM fornecedor
+        WHERE id = var_id;
+
+    END IF;
+
+END $$
+
+DELIMITER ;
+=======================================================================================

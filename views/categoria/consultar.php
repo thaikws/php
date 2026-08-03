@@ -22,7 +22,8 @@
                     $cat = new Categoria();
 
                     $dados = $cat->listar(null);
-                    foreach($dados as $mostrar){
+                    if($dados){
+                        foreach($dados as $mostrar){
                     ?>
                     <tr>
                         <td><?= $mostrar['id'] ?></td>
@@ -41,9 +42,19 @@
                             </a>
                         </td>
                     </tr>
+
                     <?php
-                    } 
-                    ?>
+    }
+}else{
+?>
+<tr>
+    <td colspan="4" class="text-center">
+        Nenhuma categoria cadastrada.
+    </td>
+</tr>
+<?php
+}
+?>
                 </tbody>
             </table>
         </div>

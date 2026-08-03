@@ -39,31 +39,23 @@ class Categoria{
     }
 
  public function salvar()
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "CALL salvar_categoria(?, ?, ?)";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $this->id);
-            $executar->bindValue(2, mb_strtoupper($this->nome));
-            $executar->bindValue(3, mb_strtoupper($this->informacoes));
-            return $executar->execute() == 1 ? true : false;
-        } catch (PDOException $erro) {
-            echo $erro->getMessage();
-        }
+{
+    if (empty($this->id)) {
+        return $this->inserir();
     }
-        public function listar($var_id)
-    {
-        try {
-            $this->conn = new Conn();
-            $sql = "CALL listar_categoria(?)";
-            $executar = $this->conn->prepare($sql);
-            $executar->bindValue(1, $var_id);
-            return $executar->execute() == 1 ? $executar->fetchAll() : false;
-        } catch (PDOException $erro) {
-            echo $erro->getMessage();
-        }
+
+    return $this->alterar();
+}
+
+public function listar($id = null)
+{
+    if ($id == null) {
+        return $this->listarSemProcedure();
     }
+
+    $this->id = $id;
+    return $this->consultarPorID();
+}
 
      public function excluir()
     {
@@ -73,6 +65,68 @@ class Categoria{
             $executar = $this->conn->prepare($sql);
             $executar->bindValue(1, $this->id);
             return $executar->execute() == 1 ? true : false;
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
+    }
+
+    public function inserir()
+{
+    try {
+        $this->conn = new Conn();
+
+        $sql = "INSERT INTO {$this->tabela} (nome, informacoes)
+                VALUES (?, ?)";
+
+        $executar = $this->conn->prepare($sql);
+
+        $executar->bindValue(1, mb_strtoupper($this->nome));
+        $executar->bindValue(2, mb_strtoupper($this->informacoes));
+
+        return $executar->execute();
+
+    } catch(PDOException $erro){
+        echo $erro->getMessage();
+    }
+}
+
+     public function alterar()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "UPDATE {$this->tabela} 
+                    SET nome = ?, informacoes = ? 
+                    WHERE id = ?";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, mb_strtoupper($this->nome));
+            $executar->bindValue(2, mb_strtoupper($this->informacoes));
+            $executar->bindValue(3, $this->id);
+            return $executar->execute() == 1 ? true : false;
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
+    }
+
+     public function listarSemProcedure()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "SELECT * FROM {$this->tabela} ORDER BY nome";
+            $executar = $this->conn->prepare($sql);
+            return $executar->execute() == 1 ? $executar->fetchAll() : false;
+        } catch (PDOException $erro) {
+            echo $erro->getMessage();
+        }
+    }
+
+    public function consultarPorID()
+    {
+        try {
+            $this->conn = new Conn();
+            $sql = "SELECT * FROM {$this->tabela} WHERE id = ?";
+            $executar = $this->conn->prepare($sql);
+            $executar->bindValue(1, $this->id);
+            return $executar->execute() == 1 ? $executar->fetch() : false;
         } catch (PDOException $erro) {
             echo $erro->getMessage();
         }

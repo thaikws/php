@@ -23,6 +23,7 @@
                     $forn = new Fornecedor();
 
                     $dados = $forn->listar(null);
+                    if($dados){
                     foreach($dados as $mostrar){
                     ?>
                     <tr>
@@ -44,8 +45,17 @@
                         </td>
                     </tr>
                     <?php
-                    } 
-                    ?>
+    }
+}else{
+?>
+<tr>
+    <td colspan="4" class="text-center">
+        Nenhum fornecedor cadastrado.
+    </td>
+</tr>
+<?php
+}
+?>
                 </tbody>
             </table>
         </div>

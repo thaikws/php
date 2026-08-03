@@ -22,6 +22,7 @@
                     $cli = new Cliente();
 
                     $dados = $cli->listar(null);
+                    if($dados){
                     foreach($dados as $mostrar){
                     ?>
                     <tr>
@@ -42,8 +43,17 @@
                         </td>
                     </tr>
                     <?php
-                    } 
-                    ?>
+    }
+}else{
+?>
+<tr>
+    <td colspan="4" class="text-center">
+        Nenhum cliente cadastrado.
+    </td>
+</tr>
+<?php
+}
+?>
                 </tbody>
             </table>
         </div>

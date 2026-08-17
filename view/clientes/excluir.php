@@ -2,7 +2,7 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once '../models/Cliente.php';
+        include_once '../model/Cliente-copia.php';
         $cat = new Cliente();
         $cat->setId($id);
 

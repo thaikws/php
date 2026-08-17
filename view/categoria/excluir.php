@@ -2,7 +2,7 @@
     $id = filter_input(INPUT_GET, 'id');
 
     if ($id) {
-        include_once __DIR__ . '/../../models/Categoria.php';;
+        include_once __DIR__ . '/../../model/Categoria-copia.php';;
         $cat = new Categoria();
         $cat->setId($id);
 

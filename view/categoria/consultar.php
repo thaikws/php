@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                    include_once __DIR__ . '/../../models/Categoria.php';
+                    include_once __DIR__ . '/../../model/Categoria-copia.php';
                     $cat = new Categoria();
 
                     $dados = $cat->listar(null);

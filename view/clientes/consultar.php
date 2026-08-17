@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                    include_once __DIR__ . '/../../models/Cliente.php';
+                    include_once __DIR__ . '/../../model/Cliente-copia.php';
                     $cli = new Cliente();
 
                     $dados = $cli->listar(null);

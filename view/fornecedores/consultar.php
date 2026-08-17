@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                    include_once __DIR__ . '/../../models/Fornecedor.php';
+                    include_once __DIR__ . '/../../model/Fornecedor-copia.php';
                     $forn = new Fornecedor();
 
                     $dados = $forn->listar(null);

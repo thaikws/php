@@ -54,7 +54,7 @@
         $funcao = filter_input(INPUT_POST, 'txtfuncao');
 
         //acesso a classe (em models)   
-        include_once __DIR__ . '/../../models/Fornecedor.php';
+        include_once __DIR__ . '/../../model/Fornecedor-copia.php';
         $fornecedor = new Fornecedor();
         $fornecedor->setId(null);
         $fornecedor->setNome($nome);

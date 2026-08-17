@@ -44,7 +44,7 @@
         $email = filter_input(INPUT_POST, 'txtemail');
 
         //acesso a classe (em models)   
-        include_once __DIR__ .  '/../../models/Cliente.php';
+        include_once __DIR__ .  '/../../model/Cliente-copia.php';
         $cliente = new Cliente();
         $cliente->setId(null);
         $cliente->setNome($nome);

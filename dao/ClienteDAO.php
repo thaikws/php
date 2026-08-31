@@ -5,9 +5,11 @@ declare(strict_types=1);
 require_once '../model/Conn.php';
 require_once '../model/Cliente.php';
 
-class CategoriaDAO
+class ClienteDAO
 {
     private PDO $conn;
+
+    private $tabela = "cliente";
 
     public function __construct()
     {

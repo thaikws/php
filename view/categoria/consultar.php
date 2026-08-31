@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                    include_once __DIR__ . '/../../controller/CategoriaController';
+                    require_once __DIR__ . '/../../controller/CategoriaController.php';
                     $cat = new CategoriaController();
 
                     $dados = $cat->listar();

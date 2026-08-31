@@ -36,19 +36,13 @@
 </div>
 
 <?php
-     //verificar se o botão btnsalvar foi acionado
+     //verificar se o botão btnsalvar foi aciosnado
      if(filter_input(INPUT_POST, 'btnsalvar')){
-        $nome = filter_input(INPUT_POST, 'txtnome');
-        $info = filter_input(INPUT_POST, 'txtinformacoes');
 
         //acesso a classe (em models)   
-        include_once __DIR__ .  '/../../model/Categoria-copia.php';
-        $cat = new Categoria();
-        $cat->setId(null); 
-        $cat->setNome($nome);
-        $cat->setInformacoes($info);
+        require_once __DIR__ .  '/../../controller/CategoriaController.php';
+        $cat = new CategoriaController();
 
-     //efetivar o insert into
      if($cat->salvar()){
 ?>
         <div class="alert alert-primary mt-3" role="alert">

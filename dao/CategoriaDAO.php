@@ -9,6 +9,8 @@ class CategoriaDAO
 {
     private PDO $conn;
 
+    private $tabela = "categoria";
+    
     public function __construct()
     {
         $this->conn = new Conn();

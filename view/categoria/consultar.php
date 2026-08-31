@@ -18,10 +18,10 @@
                 </thead>
                 <tbody>
                     <?php 
-                    include_once __DIR__ . '/../../model/Categoria-copia.php';
-                    $cat = new Categoria();
+                    include_once __DIR__ . '/../../controller/CategoriaController';
+                    $cat = new CategoriaController();
 
-                    $dados = $cat->listar(null);
+                    $dados = $cat->listar();
                     if($dados){
                         foreach($dados as $mostrar){
                     ?>

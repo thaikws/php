@@ -1,18 +1,49 @@
-  <?php
-    $id = filter_input(INPUT_GET, 'id');
+<?php
 
-    if ($id) {
-        include_once '../model/Fornecedor-copia.php';
-        $cat = new Fornecedor();
-        $cat->setId($id);
+$id = filter_input(
+    INPUT_GET,
+    'id',
+    FILTER_VALIDATE_INT
+);
 
-        if ($cat->excluir()) {
-    ?>
-            <div class="alert alert-primary" role="alert">
-                Excluído com sucesso
-            </div>
-    <?php
-        }
+if ($id) {
+
+    require_once __DIR__ .
+        '/../../controller/FornecedorController.php';
+
+    $fornecedor = new FornecedorController();
+
+    if ($fornecedor->excluir($id)) {
+
+?>
+
+        <div class="alert alert-primary"
+             role="alert">
+
+            Fornecedor excluído com sucesso!
+
+        </div>
+
+<?php
+
+    } else {
+
+?>
+
+        <div class="alert alert-danger"
+             role="alert">
+
+            Erro ao excluir fornecedor!
+
+        </div>
+
+<?php
+
     }
-    ?>
-    <meta http-equiv="refresh" CONTENT="0.2;URL=?p=fornecedores">
+
+}
+
+?>
+
+<meta http-equiv="refresh"
+      content="0.2;URL=?p=fornecedores">

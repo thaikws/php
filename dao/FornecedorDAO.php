@@ -26,13 +26,15 @@ class FornecedorDAO
         $sql = "DELETE FROM {$this->tabela} WHERE id = ?";
         $executar = $this->conn->prepare($sql);
         $executar->bindValue(1, $id);
+
         return $executar->execute();
     }
 
-     public function listar(): array
+    public function listar(): array
     {
         $sql = "SELECT * FROM {$this->tabela} ORDER BY nome";
         $executar = $this->conn->query($sql);
+
         return $executar->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -42,13 +44,15 @@ class FornecedorDAO
         $executar = $this->conn->prepare($sql);
         $executar->bindValue(1, $id);
         $executar->execute();
+
         $dados = $executar->fetch(PDO::FETCH_ASSOC);
 
-        if(!$dados){
+        if (!$dados) {
             return null;
         }
 
         $fornecedor = new Fornecedor();
+
         $fornecedor->setId($dados["id"]);
         $fornecedor->setNome($dados["nome"]);
         $fornecedor->setEmpresa($dados["empresa"]);
@@ -62,29 +66,56 @@ class FornecedorDAO
         if ($fornecedor->getId() == null) {
 
             $sql = "INSERT INTO fornecedor
-                    (nome,empresa,funcao)
+                    (nome, empresa, funcao)
                     VALUES
-                    (?,?,?)";
+                    (?, ?, ?)";
 
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindValue(1, $this->texto($fornecedor->getNome()));
-            $stmt->bindValue(2, $this->texto($fornecedor->getEmpresa()));
-            $stmt->bindValue(2, $this->texto($fornecedor->getFuncao()));
+            $stmt->bindValue(
+                1,
+                $this->texto($fornecedor->getNome())
+            );
+
+            $stmt->bindValue(
+                2,
+                $this->texto($fornecedor->getEmpresa())
+            );
+
+            $stmt->bindValue(
+                3,
+                $this->texto($fornecedor->getFuncao())
+            );
+
         } else {
 
             $sql = "UPDATE fornecedor
-                       SET nome=?,
-                           empresa=?,
-                           funcao=?
-                     WHERE id=?";
+                    SET nome = ?,
+                        empresa = ?,
+                        funcao = ?
+                    WHERE id = ?";
 
             $stmt = $this->conn->prepare($sql);
 
-            $stmt->bindValue(1, $this->texto($fornecedor->getNome()));
-            $stmt->bindValue(2, $this->texto($fornecedor->getEmpresa()));
-            $stmt->bindValue(2, $this->texto($fornecedor->getFuncao()));
-            $stmt->bindValue(3, $fornecedor->getId());
+            $stmt->bindValue(
+                1,
+                $this->texto($fornecedor->getNome())
+            );
+
+            $stmt->bindValue(
+                2,
+                $this->texto($fornecedor->getEmpresa())
+            );
+
+            $stmt->bindValue(
+                3,
+                $this->texto($fornecedor->getFuncao())
+            );
+
+            $stmt->bindValue(
+                4,
+                $fornecedor->getId()
+            );
         }
 
         return $stmt->execute();

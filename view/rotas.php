@@ -10,5 +10,8 @@
         'add/cliente' => 'clientes/salvar.php',
         'excluir/categoria' => 'categoria/excluir.php',
         'excluir/fornecedor' => 'fornecedores/excluir.php',
-        'excluir/cliente' => 'clientes/excluir.php'
+        'excluir/cliente' => 'clientes/excluir.php',
+        'editar/cliente' => 'clientes/editar.php',
+        'editar/categoria' => 'categoria/editar.php',
+        'editar/fornecedor' => 'fornecedores/editar.php'
     ];

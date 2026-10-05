@@ -47,7 +47,8 @@ class CategoriaController{
     }
 
     public function buscarPorId(int $id): ?Categoria
-    {
-        return  $this->dao->buscarPorId($id);
-    }
+{
+    return $this->dao->consultarPorID($id);
+}
+
 }

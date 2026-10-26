@@ -61,4 +61,8 @@ class ClienteController
     {
         return $this->dao->consultarPorID($id);
     }
+    public function pesquisar(string $nome): array
+    {
+        return $this->dao->pesquisar($nome);
+    }
 }

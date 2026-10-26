@@ -74,6 +74,12 @@
 
                             </a>
 
+                            <a class="btn btn-primary float-right mb-3 mr-2"
+                                href="?p=pesquisar/fornecedor">
+                                <i class="bi bi-search"></i>
+                                    Pesquisar
+                            </a>
+
                         </td>
 
                     </tr>

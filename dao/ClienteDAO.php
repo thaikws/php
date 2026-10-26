@@ -108,4 +108,16 @@ class ClienteDAO
 
         return $stmt->execute();
     }
+    public function pesquisar(string $nome): array
+{
+    $sql = "SELECT id, nome, email
+            FROM {$this->tabela}
+            WHERE nome LIKE ?
+            ORDER BY nome";
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(['%' . trim($nome) . '%']);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }

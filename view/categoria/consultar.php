@@ -40,6 +40,13 @@
                                 href="?p=editar/categoria&id=<?= $mostrar['id'] ?>">
                                 <i class="bi bi-pencil"></i>
                             </a>
+
+                            <a class="btn btn-primary float-right mb-3 mr-2"
+                                href="?p=pesquisar/categoria">
+                                <i class="bi bi-search"></i>
+                                    Pesquisar
+                            </a>
+
                         </td>
                     </tr>
 

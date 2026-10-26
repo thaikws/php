@@ -120,4 +120,19 @@ class FornecedorDAO
 
         return $stmt->execute();
     }
+    public function pesquisar(string $nome): array
+{
+    $sql = "SELECT id, nome, empresa, funcao
+            FROM {$this->tabela}
+            WHERE nome LIKE ?
+               OR empresa LIKE ?
+            ORDER BY empresa, nome";
+
+    $termo = '%' . trim($nome) . '%';
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$termo, $termo]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }

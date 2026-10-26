@@ -85,4 +85,19 @@ class CategoriaDAO
 
         return $stmt->execute();
     }
+    public function pesquisar(string $nome): array
+{
+    $sql = "SELECT id, nome, informacoes
+            FROM {$this->tabela}
+            WHERE nome LIKE ?
+               OR informacoes LIKE ?
+            ORDER BY nome";
+
+    $termo = '%' . trim($nome) . '%';
+
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute([$termo, $termo]);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 }
